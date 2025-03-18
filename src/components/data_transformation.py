@@ -13,6 +13,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OrdinalEncoder,StandardScaler
+from sklearn.preprocessing import LabelEncoder
 
 
 
@@ -100,6 +101,11 @@ class DataTransformation:
             
             input_feature_test_df=test_df.drop(columns= target_column_name,axis=1)
             target_feature_test_df=test_df[target_column_name]
+            
+            logging.info("Applying Label Encoding to the target column")
+            label_encoder = LabelEncoder()
+            target_feature_train_df = label_encoder.fit_transform(target_feature_train_df)
+            target_feature_test_df = label_encoder.transform(target_feature_test_df)
             
             input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
             
