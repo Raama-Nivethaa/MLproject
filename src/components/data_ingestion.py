@@ -30,6 +30,7 @@ class DataIngestion:
         try:
             data=pd.read_csv(r"C:\\Users\\neel\\OneDrive\\Desktop\\MLproject\\data_set\\train.csv")
             logging.info(" reading a df")
+            
 
             os.makedirs(os.path.dirname(os.path.join(self.ingestion_config.raw_data_path)),exist_ok=True)
             data.to_csv(self.ingestion_config.raw_data_path,index=False)
